@@ -6,7 +6,12 @@
 body {
   margin: 0;
   font-family: poppins;
-  background-color: #44bbff;
+  background: #ff00cc;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#333399), to(#ff00cc));
+  background: linear-gradient(to right, #333399, #ff00cc);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 body a {
@@ -28,6 +33,7 @@ nav {
 }
 
 .hero #mainheader {
+  color: white;
   font-size: 2em;
   font-weight: bold;
 }
@@ -67,7 +73,7 @@ table {
 }
 
 table td {
-  border: 1px solid white;
+  border: 1px solid black;
   padding: 0;
   width: 20%;
 }
@@ -81,15 +87,15 @@ table button {
           transition-duration: 0.2s;
   font-size: 1.4em;
   border: none;
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   width: 100%;
   height: 3em;
 }
 
 table button:hover {
-  background: white;
-  color: black;
+  background: orangered;
+  color: white;
 }
 
 table img {
