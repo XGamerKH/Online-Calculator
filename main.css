@@ -94,7 +94,7 @@ table button {
 }
 
 table button:hover {
-  background: #ffbf00;
+  background: orangered;
   color: white;
 }
 
