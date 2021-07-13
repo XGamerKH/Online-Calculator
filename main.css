@@ -52,6 +52,8 @@ nav {
 }
 
 .hero .display #secondDisplay {
+  color: rgba(0,0,0,0.8);
+  overflow: auto;
   font-size: 1.2em;
   padding-top: .2em;
   margin-bottom: 0;
@@ -61,6 +63,7 @@ nav {
 }
 
 .hero .display #mainDisplay {
+  overflow: auto;
   margin: 0;
   margin-right: .2em;
   font-size: 2em;
