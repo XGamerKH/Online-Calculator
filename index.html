@@ -6,71 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="main.css">
     <script>
-        let main; 
-
-const numberBtn = (number) => {
-    document.getElementById('mainDisplay').innerHTML = document.getElementById('mainDisplay').innerHTML + String(number);
-}
-
-const clear1 = () => {
-    document.getElementById('mainDisplay').innerHTML = "";
-    document.getElementById('secondDisplay').innerHTML = "0";
-    document.getElementById('secondDisplay').style.visibility = 'hidden';
-    return "";
-}
-const clear2 = () => "0";
-
-const calculate = (sign) => {
-    if (sign === 'plus') {
-        const placeHolder = document.getElementById('mainDisplay').innerHTML;
-        document.getElementById('mainDisplay').innerHTML = document.getElementById('mainDisplay').innerHTML + '+';
-        return Number(placeHolder);
-    } else if (sign === 'multiply') {
-        const placeHolder = document.getElementById('mainDisplay').innerHTML;
-        document.getElementById('mainDisplay').innerHTML = document.getElementById('mainDisplay').innerHTML + '×';
-        return Number(placeHolder);   
-    } else if (sign === 'minus') {
-        const placeHolder = document.getElementById('mainDisplay').innerHTML;
-        document.getElementById('mainDisplay').innerHTML = document.getElementById('mainDisplay').innerHTML + '-';
-        return Number(placeHolder);   
-    } else if (sign === 'divide') {
-        const placeHolder = document.getElementById('mainDisplay').innerHTML;
-        document.getElementById('mainDisplay').innerHTML = document.getElementById('mainDisplay').innerHTML + '÷';
-        return Number(placeHolder);  
-}   }
-
-const equal = () => {
-if (document.getElementById('mainDisplay').innerHTML.includes('×')) {
-        const SignIndex = document.getElementById('mainDisplay').innerHTML.indexOf('×');
-        const secondPart = Number(document.getElementById('mainDisplay').innerHTML.slice(SignIndex+1, document.getElementById('mainDisplay').innerHTML.length))
-        document.getElementById('secondDisplay').innerHTML = String(document.getElementById('mainDisplay').innerHTML) + '=';
-        document.getElementById('secondDisplay').style.visibility = 'visible';
-        document.getElementById('mainDisplay').innerHTML = main * secondPart;
-    } else if (document.getElementById('mainDisplay').innerHTML.includes('÷')) {
-        const SignIndex = document.getElementById('mainDisplay').innerHTML.indexOf('÷');
-        const secondPart = Number(document.getElementById('mainDisplay').innerHTML.slice(SignIndex+1, document.getElementById('mainDisplay').innerHTML.length))
-        document.getElementById('secondDisplay').innerHTML = String(document.getElementById('mainDisplay').innerHTML) + '=';
-        document.getElementById('secondDisplay').style.visibility = 'visible';
-        if (secondPart !== 0) {
-            document.getElementById('mainDisplay').innerHTML = main / secondPart;
-        } else {
-            document.getElementById('mainDisplay').innerHTML = "Cannot divide by 0!"
-        }
-    } else if (document.getElementById('mainDisplay').innerHTML.includes('+')) {
-        const SignIndex = document.getElementById('mainDisplay').innerHTML.indexOf('+');
-        const secondPart = Number(document.getElementById('mainDisplay').innerHTML.slice(SignIndex+1, document.getElementById('mainDisplay').innerHTML.length))
-        document.getElementById('secondDisplay').innerHTML = String(document.getElementById('mainDisplay').innerHTML) + '=';
-        document.getElementById('secondDisplay').style.visibility = 'visible';
-        document.getElementById('mainDisplay').innerHTML = main + secondPart;
-    } else if (document.getElementById('mainDisplay').innerHTML.includes('-')) {
-        const SignIndex = document.getElementById('mainDisplay').innerHTML.indexOf('-');
-        const secondPart = Number(document.getElementById('mainDisplay').innerHTML.slice(SignIndex+1, document.getElementById('mainDisplay').innerHTML.length))
-        document.getElementById('secondDisplay').innerHTML = String(document.getElementById('mainDisplay').innerHTML) + '=';
-        document.getElementById('secondDisplay').style.visibility = 'visible';
-        document.getElementById('mainDisplay').innerHTML = main - secondPart;
-    }
-}
-
+        const allClear=()=>{document.getElementById("mainDisplay").innerHTML="",document.getElementById("secondDisplay").innerHTML="0",document.getElementById("secondDisplay").style.visibility="hidden"},numberBtn=e=>{document.getElementById("secondDisplay").innerHTML.includes("=")?(allClear(),document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+String(e)):document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+String(e)},signBtn=e=>{if(!document.getElementById("secondDisplay").innerHTML.includes("=")&&document.getElementById("mainDisplay").innerHTML){const n=document.getElementById("mainDisplay").innerHTML,t=n[n.length-1];"×"===t||"÷"===t||"-"===t||"+"===t||(document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+e)}},minus=()=>{if(!document.getElementById("secondDisplay").innerHTML.includes("=")&&document.getElementById("mainDisplay").innerHTML){const e=document.getElementById("mainDisplay").innerHTML,n=e[e.length-1];"×"===n||"÷"===n||"-"===n||"+"===n?"(-"!==e.slice(e.length-2,e.length)&&(document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"(-"):document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"-"}},parentheses=()=>{const e=document.getElementById("mainDisplay").innerHTML,n=e[e.length-1];let t=[];for(let n=0;n<e.length;n++)"("!==e[n]&&")"!==e[n]||t.push(n);console.log(t),""===e?document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"(":")"!==e[t[t.length-1]]&&e.includes("(")?document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+")":"123456789)".includes(n)?document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"×(":document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"("},deleteBtn=()=>{document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML.slice(0,document.getElementById("mainDisplay").innerHTML.length-1)},equal=()=>{const mainDisplay=document.getElementById("mainDisplay").innerHTML,mainDisplayLast=mainDisplay[mainDisplay.length-1];if("×"===mainDisplayLast||"÷"===mainDisplayLast||"-"===mainDisplayLast||"+"===mainDisplayLast||"."===mainDisplayLast)return alert("Missing some value!"),0;let parenthesesCountOne=0,parenthesesCountTwo=0;for(let e=0;e<mainDisplay.length;e++)"("===mainDisplay[e]&&parenthesesCountOne++;for(let e=0;e<mainDisplay.length;e++)")"===mainDisplay[e]&&parenthesesCountTwo++;if(parenthesesCountOne!==parenthesesCountTwo)return alert("Missing some Parentheses!"),0;let tempString="";for(let e=0;e<mainDisplay.length;e++)"×"===mainDisplay[e]?tempString+="*":"÷"===mainDisplay[e]?tempString+="/":tempString+=mainDisplay[e];document.getElementById("secondDisplay").style.visibility="visible",document.getElementById("secondDisplay").innerHTML=String(mainDisplay)+"=";let result=eval(tempString);if(String(result).includes("Inf"))return document.getElementById("mainDisplay").innerHTML="Cannot divide by 0!",0;document.getElementById("mainDisplay").innerHTML=result},percentage=()=>{equal(),document.getElementById("secondDisplay").innerHTML="("+document.getElementById("secondDisplay").innerHTML.slice(0,document.getElementById("secondDisplay").innerHTML.length-1)+")%=",document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML/100},decimal=()=>{const e=document.getElementById("mainDisplay").innerHTML;let n=[];for(let t=0;t<e.length;t++)"-"!==e[t]&&"+"!==e[t]&&"×"!==e[t]&&"÷"!==e[t]||n.push(t);""===e?document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"0.":0===n.length?e.includes(".")||(document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"."):e.slice(n[n.length-1],e.length).includes(".")||(1!==e.slice(n[n.length-1],e.length).length?document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+".":document.getElementById("mainDisplay").innerHTML=document.getElementById("mainDisplay").innerHTML+"0.")};
     </script>
     <title>Online Calculator</title>
 </head>
@@ -92,33 +28,34 @@ if (document.getElementById('mainDisplay').innerHTML.includes('×')) {
                 </div>
                 <table>
                     <tr>
-                        <td><button onclick="main = clear1();secondary = clear2()">AC</button></td>
-                        <td><button ><img src="https://i.ibb.co/NL2YV5k/backspace-128.png"></button></td>
-                        <td><button>%</button></td>
-                        <td><button onclick="main = calculate('divide')">÷</button></td>
+                        <td><button onclick="allClear()">AC</button></td>
+                        <td><button onclick="deleteBtn()">Del</button></td>
+                        <td><button onclick="percentage()">%</button></td>
+                        <td><button onclick="signBtn('÷')">÷</button></td>
                     </tr>
                     <tr>
                         <td><button onclick="numberBtn(7)">7</button></td>
                         <td><button onclick="numberBtn(8)">8</button></td>
                         <td><button onclick="numberBtn(9)">9</button></td>
-                        <td><button onclick="main = calculate('multiply')">×</button></td>
+                        <td><button onclick="signBtn('×')">×</button></td>
                     </tr>
                     <tr>
                         <td><button onclick="numberBtn(4)">4</button></td>
                         <td><button onclick="numberBtn(5)">5</button></td>
                         <td><button onclick="numberBtn(6)">6</button></td>
-                        <td><button onclick="main = calculate('plus')">+</button></td>
+                        <td><button onclick="signBtn('+')">+</button></td>
                     </tr>
                     <tr>
                         <td><button onclick="numberBtn(1)">1</button></td>
                         <td><button onclick="numberBtn(2)">2</button></td>
                         <td><button onclick="numberBtn(3)">3</button></td>
-                        <td><button onclick="main = calculate('minus')">-</button></td>
+                        <td><button onclick="minus()">-</button></td>
                     </tr>
                     <tr>
                         <td><button onclick="numberBtn(0)">0</button></td>
-                        <td><button>.</button></td>
-                        <td colspan="2" id="equal"><button onclick="equal()">=</button></td>
+                        <td><button onclick="decimal()">.</button></td>
+                        <td><button onclick="parentheses()">( )</button></td>
+                        <td><button onclick="equal()">=</button></td>
                     </tr>
                 </table>
             </div>
