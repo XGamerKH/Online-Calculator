@@ -39,8 +39,8 @@ nav {
 }
 
 .hero .display {
-  border: 1px solid black;
-  border-bottom: none;
+  padding-left: 1px;
+  padding-right: 1px;
   font-weight: bold;
   margin-bottom: 0;
   text-align: right;
