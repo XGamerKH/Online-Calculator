@@ -117,20 +117,24 @@ table img {
   height: 1em;
 }
 
-.container-feature #feature {
+#container-feature {
+  display: none;
+}
+
+#container-feature #feature {
   padding: 0 1em;
 }
 
-.container-feature .message {
+#container-feature .message {
   padding: auto 1em;
   margin: auto 1em;
 }
 
-.container-feature cite {
+#container-feature cite {
   float: right;
 }
 
-.container-feature #message {
+#container-feature #message {
   border-radius: .4em;
   display: none;
   border: 1px solid black;
